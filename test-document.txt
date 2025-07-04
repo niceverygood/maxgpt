@@ -1,0 +1,18 @@
+MaxGPT 프로젝트 개요
+
+이 프로젝트는 React + Next.js 기반의 GPT 채팅 웹 애플리케이션입니다.
+
+주요 기능:
+1. 실시간 GPT 채팅 인터페이스
+2. 오른쪽 하단 고정 채팅 위젯
+3. 파일 업로드 및 분석 기능
+4. PDF 및 텍스트 파일 지원
+5. 반응형 디자인 (Tailwind CSS)
+
+기술 스택:
+- Frontend: React 18, Next.js 14
+- Styling: Tailwind CSS
+- AI: OpenAI GPT-3.5-turbo
+- Language: TypeScript
+
+이 파일은 파일 업로드 기능을 테스트하기 위한 샘플 문서입니다. 

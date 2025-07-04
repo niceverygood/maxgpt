@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Next.js Netlify 플러그인 사용
+[[plugins]]
+  package = "@netlify/plugin-nextjs" 
