@@ -1,9 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 import OpenAI from 'openai'
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
+// 빌드 시 환경변수 체크를 위한 지연 초기화
+let openai: OpenAI | null = null
+
+const getOpenAIClient = () => {
+  if (!openai && process.env.OPENAI_API_KEY) {
+    openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
+  }
+  return openai
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -43,7 +51,15 @@ export async function POST(request: NextRequest) {
       }
     ]
 
-    const completion = await openai.chat.completions.create({
+    const client = getOpenAIClient()
+    if (!client) {
+      return NextResponse.json(
+        { error: 'OpenAI client not available' },
+        { status: 500 }
+      )
+    }
+
+    const completion = await client.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: conversationMessages,
       max_tokens: 1000,
